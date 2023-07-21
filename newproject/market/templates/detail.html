@@ -1,0 +1,51 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+<title>Ürün Detay</title>
+{% endblock title %}
+
+{% block style %}
+{% endblock style %}
+
+
+{% block main %}
+
+<div class="container">
+    <div class="row d-flex justify-content-center my-5">
+        <div class="col-md-9 col-10">
+            <div class="card mb-3" style="max-width: 6000px;">
+                <div class="row g-0">
+                  <div class="col-md-4 d-flex">
+                    <img
+                      src="{{ product.image.url }}"
+                      alt="Trendy Pants and Shoes"
+                      class="img-fluid align-self-center"
+                    />
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ product.title }}</h5>
+                      <hr>
+                      <p class="card-text">
+                        {{ product.text }}
+                      </p>
+                      <hr>
+                      <p class="card-text">
+                        <small class="text-muted">Eklenme tarihi : {{ product.date_now }}</small><br>
+                        <small class="text-muted">Stok sayısı : {{ product.stok }}</small><br>
+                        <small class="text-muted">Fiyat : {{ product.price }} TL</small>
+                      </p>
+                      <a href="#" class="btn btn-info">Satın Al</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main %}
+

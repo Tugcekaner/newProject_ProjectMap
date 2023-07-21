@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+<title>Anasayfa</title>
+{% endblock title %}
+
+{% block style %}
+{% endblock style %}
+
+
+{% block main %}
+<div class="container">
+    <div class="row d-flex justify-content-between">
+        {% for urun in urunler %}
+        <div class="col-md-4 col-12 my-3">
+            <div class="card" style="width: 18rem;">
+                <img src="{{ urun.image.url }}" class="card-img-top"
+                    alt="Chicago Skyscrapers" />
+                <div class="card-body">
+                    <h5 class="card-title">{{ urun.title }}</h5>
+                    <p class="card-text">{{ urun.text|truncatechars:20 }}</p>
+                </div>
+                <ul class="list-group list-group-light list-group-small">
+                    <li class="list-group-item px-4">Tarih : {{ urun.date_now }}</li>
+                    <li class="list-group-item px-4">Stok : {{ urun.stok }}</li>
+                    <li class="list-group-item px-4">Fiyat : {{ urun.price }} tl</li>
+                </ul>
+                <div class="card-body">
+                    <a href="/detail/{{ urun.id }}" class="btn btn-warning">Ürün Detayı</a>
+                    <a href="#" class="btn btn-info">Satın Al</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock main %}
