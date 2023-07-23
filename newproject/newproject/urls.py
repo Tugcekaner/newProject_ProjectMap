@@ -28,6 +28,12 @@ urlpatterns = [
     path('',indexPage,name='index'),
     path('detail/<id>',detailPage,name='detail'),
 
+# *user.views
+    path('login/',loginPage,name='login'),
+    path('logout',logoutUser,name='logout'), 
+    path('register/',registerPage, name='register'),
+
+
 
     path('admin/', admin.site.urls),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

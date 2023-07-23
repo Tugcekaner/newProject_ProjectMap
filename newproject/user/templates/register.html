@@ -1,0 +1,77 @@
+
+{% extends 'base.html' %}
+
+
+{% block main %}
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-xl-10">
+        <div class="card rounded-3 text-black">
+          <div class="row g-0 d-flex justify-content-center">
+            <div class="col-lg-6 gradient-custom">
+              <div class="card-body p-md-5 mx-md-4">
+
+
+                <form method="POST">
+                  {% csrf_token %}
+
+                  <div class="form-outline mb-4">
+                    <input name="username" type="text" id="form2Example11" class="form-control" />
+                    <label class="form-label" for="form2Example11">Kullanıcı Adı</label>
+                  </div>
+
+                  <!-- Email input -->
+                  <div class="form-outline mb-4">
+                    <input name="email" type="email" id="form3Example3" class="form-control" />
+                    <label class="form-label" for="form3Example3">Email</label>
+                  </div>
+
+                  <!-- Password input -->
+                  <div class="form-outline mb-4">
+                    <input name="password1" type="password" id="form3Example4" class="form-control" />
+                    <label class="form-label" for="form3Example4">Şifre</label>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <input name="password2" type="password" id="form3Example4" class="form-control" />
+                    <label class="form-label" for="form3Example4">Şifre Tekrar:</label>
+                  </div>
+
+
+                  <!-- Submit button -->
+                  <button type="submit" class="btn btn-primary btn-block mb-4">
+                    Kayıt Ol
+                  </button>
+
+                  <!-- Register buttons -->
+                  <div class="text-center">
+                    <p>Hesabınla Giriş Yap :</p>
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-facebook-f"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-google"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-twitter"></i>
+                    </button>
+
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-github"></i>
+                    </button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock main %}
+    
