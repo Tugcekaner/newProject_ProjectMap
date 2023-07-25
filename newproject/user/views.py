@@ -68,3 +68,53 @@ def registerPage(request):
     if request.user.is_authenticated:
         return redirect("index")
     return render(request, 'register.html', context)
+
+def profilePage(request):
+    profile = UserInfo.objects.filter(user=request.user)
+    user = User.objects.get(username=request.user)
+
+    if request.method == "POST":
+        submit = request.POST.get("submit")
+        if submit == "profileUpdate":
+            fname = request.POST.get("name")
+            lname = request.POST.get("surname")
+            email = request.POST.get("email")
+            username = request.POST.get("username")
+
+            user.first_name = fname
+            user.last_name = lname
+            user.email = email
+            
+            if not User.objects.filter(username=username).exists():
+                user.username = username
+                messages.success(
+                    request, "Kullanıcı adınız başarıyla değiştirildi..")
+            else:
+                messages.warning(
+                    request, "Bu kullanıcı adı zaten kullanılıyor!")
+        if submit == "passwordChange":
+            password = request.POST.get("password")
+            if user.check_password(password):  # şifre kontrolü
+                password1 = request.POST.get("password1")
+                password2 = request.POST.get("password2")
+                if password1 == password2:
+                    user.set_password(password1)  # şifre değiştirme
+                    profile.password = password1
+                    login(request, user)
+                    messages.success(
+                        request, "Şifreniz başarıyla değiştirildi..")
+                else:
+                    messages.warning(request, "Şifreler eşleşmiyor!")
+            else:
+                messages.warning(request, "Şifreniz yanlış!")
+
+            profile.save()
+        user.save()
+        return redirect('profile')
+
+    context = {
+        "profile": profile,
+        "user": user,
+    }
+
+    return render(request, 'profile.html', context)

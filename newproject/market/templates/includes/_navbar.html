@@ -43,15 +43,21 @@
       </div>
       <!-- Collapsible wrapper -->
   
+      {% if request.user.is_authenticated %}
+
       <!-- Right elements -->
       <div class="d-flex align-items-center">
+        <h6 class="m-auto me-2" >{{ user.username }}</h6>
+
         <!-- Icon -->
         <a class="text-reset me-3" href="#">
           <i class="fas fa-shopping-cart"></i>
         </a>
-  
+              <!-- ! user girişliyse -->
+
         <!-- Notifications -->
         <div class="dropdown">
+          
           <a
             class="text-reset me-3 dropdown-toggle hidden-arrow"
             href="#"
@@ -60,6 +66,7 @@
             data-mdb-toggle="dropdown"
             aria-expanded="false"
           >
+          
             <i class="fas fa-bell"></i>
             <span class="badge rounded-pill badge-notification bg-danger">1</span>
           </a>
@@ -79,6 +86,10 @@
           </ul>
         </div>
         <!-- Avatar -->
+        
+          
+       
+          
         <div class="dropdown">
           <a
             class="dropdown-toggle d-flex align-items-center hidden-arrow"
@@ -101,7 +112,7 @@
             aria-labelledby="navbarDropdownMenuAvatar"
           >
             <li>
-              <a class="dropdown-item" href="#">Profilim</a>
+              <a class="dropdown-item" href="{% url 'profile' %}">Profilim</a>
             </li>
             <li>
               <a class="dropdown-item" href="#">Ürünlerim</a>
@@ -112,6 +123,18 @@
           </ul>
         </div>
       </div>
+
+      {% else %}
+
+      <!-- !user girişli değilse -->
+      <div>
+        <div class="btn btn-danger">
+          <a href="{% url 'login' %}">Giriş Yap</a>
+        </div>
+      </div>
+
+      {% endif %}
+
       <!-- Right elements -->
     </div>
     <!-- Container wrapper -->
